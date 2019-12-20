@@ -60,6 +60,7 @@ const ColorList = ({ colors, updateColors }) => {
       .delete(`http://localhost:5000/api/colors/${color.id}`)
       .then(res => {
         updateColors(colors.filter(colors => colors.id !== color.id));
+        setEditing(false);
       })
       .catch(err => {
         alert(err.message);
