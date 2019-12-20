@@ -7,9 +7,21 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, updateColors }) => {
-  console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [colorToAdd, setColorToAdd] = useState(initialColor);
+
+  const addColor = e => {
+    e.preventDefault();
+    withAuth()
+      .post("http://localhost:5000/api/colors", colorToAdd)
+      .then(res => {
+        updateColors(res.data);
+      })
+      .catch(err => {
+        alert(err.message);
+      });
+  };
 
   const editColor = color => {
     setEditing(true);
@@ -109,8 +121,34 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
-      <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+      {/* <div className="spacer" /> */}
+      <div>
+        <form onSubmit={addColor}>
+          <legend>add color</legend>
+          <label>
+            color name:
+            <input
+              onChange={e =>
+                setColorToAdd({ ...colorToAdd, color: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            hex code:
+            <input
+              onChange={e =>
+                setColorToAdd({
+                  ...colorToAdd,
+                  code: { hex: e.target.value }
+                })
+              }
+            />
+          </label>
+          <div className="button-row">
+            <button type="submit">add color</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
