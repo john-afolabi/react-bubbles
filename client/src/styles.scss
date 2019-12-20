@@ -20,6 +20,34 @@ body,
   }
 }
 
+.login-container {
+  margin: 20px auto;
+
+  form {
+    input {
+      padding: 5px;
+      width: 96%;
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin: 0 auto;
+      width: 100%;
+      border: none;
+      background-color: black;
+      color: white;
+      padding: 10px;
+
+      &:hover {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        border: 1px solid black;
+      }
+    }
+  }
+}
+
 .spacer {
   height: 100%;
 }

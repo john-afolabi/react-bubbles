@@ -27,8 +27,8 @@ const Login = ({ history }) => {
   };
 
   return (
-    <>
-      <h1>Welcome to the Bubble App!</h1>
+    <div className="login-container">
+      <h2>Welcome to the Bubble App!</h2>
       <form>
         <input
           type="text"
@@ -44,7 +44,7 @@ const Login = ({ history }) => {
         />
         <button onClick={onLogin}>Login</button>
       </form>
-    </>
+    </div>
   );
 };
 
